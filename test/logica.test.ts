@@ -64,6 +64,17 @@ describe('Reglas de Ruta de bus', () => {
     expect(estado.resultadoFinal).toBe('Terminaste el día 10 con menos de $120.')
   })
 
+  it('gana al terminar exactamente con la meta', () => {
+    const estado = crearEstadoInicial()
+    estado.diaActual = CONFIG.diasTotales
+    estado.tarifaCentavos = 40
+    estado.cajaCentavos = CONFIG.metaCajaCentavos - 1200
+
+    expect(cerrarDia(estado)).toBe(true)
+    expect(estado.cajaCentavos).toBe(CONFIG.metaCajaCentavos)
+    expect(estado.resultadoFinal).toBe('¡Ganaste!')
+  })
+
   it('recorre diez días y alcanza el final bueno con una caja de ciento cincuenta dólares', () => {
     const estado = crearEstadoInicial()
 
