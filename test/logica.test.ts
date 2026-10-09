@@ -8,6 +8,7 @@ describe('Reglas de Ruta de bus', () => {
       cajaCentavos: 3000,
       tarifaCentavos: 25,
       resultadoDiaAnterior: null,
+      historialDias: [],
       resultadoFinal: null,
     })
   })
@@ -41,6 +42,16 @@ describe('Reglas de Ruta de bus', () => {
     })
     expect(estado.cajaCentavos).toBe(4200)
     expect(estado.diaActual).toBe(2)
+    expect(estado.historialDias).toEqual([{
+      dia: 1,
+      tarifaCentavos: 40,
+      cajaAntesCentavos: 3000,
+      pasajeros: 80,
+      ingresosCentavos: 3200,
+      costosCentavos: 2000,
+      gananciaCentavos: 1200,
+      cajaDespuesCentavos: 4200,
+    }])
   })
 
   it('declara la quiebra cuando la caja queda bajo cero', () => {
@@ -52,6 +63,8 @@ describe('Reglas de Ruta de bus', () => {
     expect(cerrarDia(estado)).toBe(true)
     expect(estado.cajaCentavos).toBeLessThan(0)
     expect(estado.resultadoFinal).toBe('Quebraste')
+    expect(estado.historialDias).toHaveLength(1)
+    expect(estado.historialDias[0].dia).toBe(1)
   })
 
   it('termina mal al cerrar el décimo día con menos de la meta', () => {
@@ -87,6 +100,8 @@ describe('Reglas de Ruta de bus', () => {
 
     expect(estado.cajaCentavos).toBe(15000)
     expect(estado.resultadoFinal).toBe('¡Ganaste!')
+    expect(estado.historialDias).toHaveLength(CONFIG.diasTotales)
+    expect(estado.historialDias[CONFIG.diasTotales - 1].cajaDespuesCentavos).toBe(15000)
   })
 
   it('rechaza subir, bajar o cerrar después del final y permite reiniciar', () => {
@@ -105,5 +120,6 @@ describe('Reglas de Ruta de bus', () => {
     expect(estado.tarifaCentavos).toBe(tarifaFinal)
     expect(reiniciarJuego(estado)).toBe(true)
     expect(estado).toEqual(crearEstadoInicial())
+    expect(estado.historialDias).toEqual([])
   })
 })

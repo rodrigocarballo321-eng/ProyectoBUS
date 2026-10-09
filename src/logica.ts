@@ -21,6 +21,13 @@ export type ResultadoDia = {
   gananciaCentavos: number
 }
 
+export type RegistroDia = ResultadoDia & {
+  dia: number
+  tarifaCentavos: number
+  cajaAntesCentavos: number
+  cajaDespuesCentavos: number
+}
+
 export type ResultadoFinal =
   | '¡Ganaste!'
   | 'Quebraste'
@@ -31,6 +38,7 @@ export type EstadoJuego = {
   cajaCentavos: number
   tarifaCentavos: number
   resultadoDiaAnterior: ResultadoDia | null
+  historialDias: RegistroDia[]
   resultadoFinal: ResultadoFinal | null
 }
 
@@ -40,6 +48,7 @@ export function crearEstadoInicial(): EstadoJuego {
     cajaCentavos: CONFIG.cajaInicialCentavos,
     tarifaCentavos: CONFIG.tarifaInicialCentavos,
     resultadoDiaAnterior: null,
+    historialDias: [],
     resultadoFinal: null,
   }
 }
@@ -75,6 +84,7 @@ export function cerrarDia(estado: EstadoJuego): boolean {
   const costosCentavos =
     CONFIG.costoCombustibleCentavos + CONFIG.costoMotoristaCentavos
   const gananciaCentavos = ingresosCentavos - costosCentavos
+  const cajaAntesCentavos = estado.cajaCentavos
 
   estado.cajaCentavos += gananciaCentavos
   estado.resultadoDiaAnterior = {
@@ -83,6 +93,16 @@ export function cerrarDia(estado: EstadoJuego): boolean {
     costosCentavos,
     gananciaCentavos,
   }
+  estado.historialDias.push({
+    dia: estado.diaActual,
+    tarifaCentavos: estado.tarifaCentavos,
+    cajaAntesCentavos,
+    pasajeros,
+    ingresosCentavos,
+    costosCentavos,
+    gananciaCentavos,
+    cajaDespuesCentavos: estado.cajaCentavos,
+  })
 
   if (estado.cajaCentavos < CONFIG.limiteQuiebraCentavos) {
     estado.resultadoFinal = 'Quebraste'

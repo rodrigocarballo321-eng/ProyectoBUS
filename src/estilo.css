@@ -502,6 +502,69 @@ button:focus-visible {
   color: var(--rojo);
 }
 
+.historial {
+  padding: 28px 0;
+  border-top: 1px solid var(--linea);
+}
+
+.historial .titulo-fila {
+  margin-bottom: 16px;
+}
+
+.historial__cantidad {
+  color: var(--texto-suave);
+  font-size: 16px;
+}
+
+.historial-lista {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.historial-registro {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  background: var(--linea);
+}
+
+.historial-registro > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background: var(--superficie);
+}
+
+.historial-registro span,
+.historial-registro strong {
+  overflow-wrap: anywhere;
+  font-size: 16px;
+}
+
+.historial-registro span {
+  color: var(--texto-suave);
+}
+
+.historial-registro strong {
+  color: var(--texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.historial-registro__ganancia--positiva strong {
+  color: var(--verde-texto);
+}
+
+.historial-registro__ganancia--negativa strong {
+  color: var(--rojo);
+}
+
 .controles {
   display: flex;
   align-items: end;
@@ -699,6 +762,14 @@ button:focus-visible {
 
   .resultado-dia > div:nth-last-child(-n + 2) {
     border-bottom: 0;
+  }
+
+  .historial-registro {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .historial-registro > div {
+    padding: 12px 10px;
   }
 
   .controles {

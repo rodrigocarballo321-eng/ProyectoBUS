@@ -100,6 +100,43 @@ function dibujarResultadoDia(): string {
 	`
 }
 
+function dibujarHistorial(): string {
+	if (estado.historialDias.length === 0) {
+		return ''
+	}
+
+	const registros = estado.historialDias.map((registro) => {
+		const claseGanancia = registro.gananciaCentavos >= 0
+			? 'historial-registro__ganancia--positiva'
+			: 'historial-registro__ganancia--negativa'
+
+		return `
+			<li class="historial-registro">
+				<div><span>DÍA</span><strong>${registro.dia}</strong></div>
+				<div><span>Tarifa</span><strong>${mostrarDinero(registro.tarifaCentavos)}</strong></div>
+				<div><span>Pasajeros</span><strong>${registro.pasajeros}</strong></div>
+				<div><span>Ingresos</span><strong>${mostrarDinero(registro.ingresosCentavos)}</strong></div>
+				<div><span>Costos</span><strong>${mostrarDinero(registro.costosCentavos)}</strong></div>
+				<div class="${claseGanancia}"><span>Ganancia</span><strong>${mostrarDinero(registro.gananciaCentavos)}</strong></div>
+				<div><span>Caja final</span><strong>${mostrarDinero(registro.cajaDespuesCentavos)}</strong></div>
+			</li>
+		`
+	}).join('')
+
+	return `
+		<section class="historial" aria-labelledby="titulo-historial">
+			<div class="titulo-fila">
+				<div>
+					<p class="ceja">REGISTRO DE CIERRES</p>
+					<h2 id="titulo-historial">Bitácora de ruta</h2>
+				</div>
+				<span class="historial__cantidad">${estado.historialDias.length} días</span>
+			</div>
+			<ol class="historial-lista">${registros}</ol>
+		</section>
+	`
+}
+
 function dibujarPartida(): string {
 	const segmentos = Array.from({ length: CONFIG.diasTotales }, (_, indice) => {
 		const diaSegmento = indice + CONFIG.primerDia
@@ -149,6 +186,7 @@ function dibujarPartida(): string {
 				</div>
 				${dibujarResultadoDia()}
 			</section>
+			${dibujarHistorial()}
 
 			<section class="controles" aria-label="Controles de la ruta">
 				<div class="controles__tarifa">
@@ -197,6 +235,7 @@ function dibujarFinal(): string {
 				</div>
 				${dibujarResultadoDia()}
 			</section>
+			${dibujarHistorial()}
 
 			<button class="boton boton--claro boton--reiniciar" type="button" data-accion="reiniciar">Volver a empezar <span aria-hidden="true">↻</span></button>
 		</main>
