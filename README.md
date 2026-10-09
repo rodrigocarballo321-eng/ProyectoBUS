@@ -32,3 +32,15 @@ npm run dev
 ## 6. Declaración de autoría
 
 <!-- Completá esta sección: herramienta usada, generación del código por un agente de IA bajo tu dirección y partes que puedes explicar. -->
+
+## Caso analizado: tarifa negativa
+
+Al empezar con una tarifa de $0.25 y bajarla siete veces, queda en −$0.10. Al cerrar el día, la fórmula calcula 180 pasajeros, −$18 de ingresos, $20 de costos y −$38 de ganancia; la caja pasa de $30 a −$8 y el juego muestra «Quebraste».
+
+Las tres causas probables son:
+
+1. `bajarTarifa` resta $0.05 sin comprobar una tarifa mínima.
+2. `cerrarDia` usa directamente la tarifa negativa para calcular pasajeros e ingresos.
+3. La quiebra se determina después de restar la ganancia de la caja, sin validar antes la tarifa.
+
+La ficha no especifica una tarifa mínima, así que este caso queda documentado como comportamiento a revisar, no como una regla confirmada.
