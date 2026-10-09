@@ -1,22 +1,25 @@
 :root {
   font-family: "Bahnschrift", "Aptos", "Segoe UI", sans-serif;
-  color: #f5f4eb;
-  background: #091b26;
+  color: #374151;
+  background: #F9FAFB;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --fondo: #091b26;
-  --superficie: #102936;
-  --superficie-clara: #193947;
-  --texto: #f5f4eb;
-  --texto-suave: #c1d0ce;
-  --linea: #46616a;
-  --ambar: #ffd166;
-  --verde: #71e0a4;
-  --rojo: #ff8279;
-  --tinta: #10212a;
+  --fondo: #F9FAFB;
+  --superficie: #FFFFFF;
+  --superficie-clara: #E8EEF8;
+  --texto: #1E3A8A;
+  --texto-suave: #374151;
+  --linea: #D1D5DB;
+  --ambar: #F59E0B;
+  --ambar-texto: #925B00;
+  --verde: #10B981;
+  --verde-texto: #047857;
+  --verde-claro: #047857;
+  --rojo: #B91C1C;
+  --tinta: #0B2538;
 }
 
 * {
@@ -29,8 +32,8 @@ body {
   margin: 0;
   background-color: var(--fondo);
   background-image:
-    linear-gradient(rgba(207, 223, 215, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(207, 223, 215, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(30, 58, 138, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 138, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -72,11 +75,11 @@ button:focus-visible {
   height: 42px;
   place-items: center;
   border: 1px solid var(--ambar);
-  background: rgba(255, 209, 102, 0.08);
-  color: var(--ambar);
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--ambar-texto);
   font-family: "Bahnschrift", "Segoe UI", sans-serif;
   font-size: 20px;
-  box-shadow: inset 0 0 16px rgba(255, 209, 102, 0.08);
+  box-shadow: inset 0 0 16px rgba(245, 158, 11, 0.12);
 }
 
 .marca__texto span {
@@ -118,8 +121,8 @@ button:focus-visible {
 
 .escenario {
   padding: 42px 24px 0;
-  border-right: 1px solid rgba(113, 224, 164, 0.2);
-  border-left: 1px solid rgba(113, 224, 164, 0.2);
+  border-right: 1px solid rgba(16, 185, 129, 0.3);
+  border-left: 1px solid rgba(16, 185, 129, 0.3);
   animation: aparecer 360ms ease-out both;
 }
 
@@ -153,7 +156,7 @@ button:focus-visible {
 }
 
 .sello span {
-  color: var(--ambar);
+  color: var(--texto);
 }
 
 .presentacion {
@@ -175,12 +178,12 @@ button:focus-visible {
 }
 
 .presentacion__texto h1 span {
-  color: var(--ambar);
+  color: var(--ambar-texto);
 }
 
 .bajada {
   margin: 18px 0 12px;
-  color: var(--ambar);
+  color: var(--ambar-texto);
   font-size: 24px;
   font-weight: 700;
 }
@@ -214,18 +217,19 @@ button:focus-visible {
 .boton--claro {
   min-width: 230px;
   padding: 0 22px;
-  background: var(--texto);
+  background: var(--verde);
   color: var(--tinta);
 }
 
 .boton--claro:hover {
-  background: var(--ambar);
+  background: var(--verde-claro);
+  color: var(--superficie);
 }
 
 .hoja-salida {
   padding: 22px 24px 18px;
   border: 1px solid var(--linea);
-  background: rgba(16, 41, 54, 0.86);
+  background: var(--superficie);
 }
 
 .hoja-salida__encabezado,
@@ -247,7 +251,7 @@ button:focus-visible {
 }
 
 .hoja-salida__marca {
-  color: var(--ambar);
+  color: var(--ambar-texto);
 }
 
 .datos-inicio {
@@ -256,7 +260,7 @@ button:focus-visible {
 
 .datos-inicio > div {
   min-height: 58px;
-  border-bottom: 1px solid rgba(193, 208, 206, 0.18);
+  border-bottom: 1px solid rgba(55, 65, 81, 0.14);
 }
 
 .datos-inicio dt,
@@ -283,7 +287,7 @@ button:focus-visible {
 }
 
 .datos-inicio .dato-tarifa dd {
-  color: var(--ambar);
+  color: var(--ambar-texto);
 }
 
 .hoja-salida__nota {
@@ -355,7 +359,7 @@ button:focus-visible {
 
 .segmento-dia--actual {
   background: var(--ambar);
-  box-shadow: 0 0 12px rgba(255, 209, 102, 0.55);
+  box-shadow: 0 0 10px rgba(242, 189, 82, 0.32);
 }
 
 .marcadores {
@@ -397,7 +401,7 @@ button:focus-visible {
 }
 
 .marcador--tarifa .marcador__valor {
-  color: var(--ambar);
+  color: var(--ambar-texto);
 }
 
 .marcador__detalle {
@@ -443,7 +447,7 @@ button:focus-visible {
 }
 
 .sin-resultado__marca {
-  color: var(--ambar);
+  color: var(--ambar-texto);
   font-size: 24px;
 }
 
@@ -488,7 +492,7 @@ button:focus-visible {
 }
 
 .resultado-dia .resultado--positivo dd {
-  color: var(--verde);
+  color: var(--verde-texto);
 }
 
 .resultado-dia .resultado--negativo dd {
@@ -521,7 +525,7 @@ button:focus-visible {
   padding: 0 18px;
   border-color: var(--ambar);
   background: transparent;
-  color: var(--ambar);
+  color: var(--ambar-texto);
 }
 
 .boton--tarifa:hover {
@@ -534,11 +538,12 @@ button:focus-visible {
   padding: 0 22px;
   background: var(--verde);
   color: var(--tinta);
-  box-shadow: 0 0 18px rgba(113, 224, 164, 0.12);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.14);
 }
 
 .boton--cerrar:hover {
-  background: #9aefbd;
+  background: var(--verde-claro);
+  color: var(--superficie);
 }
 
 .ayuda-teclado {
@@ -559,7 +564,7 @@ button:focus-visible {
 }
 
 .final--ganado .cierre-final h1 {
-  color: var(--verde);
+  color: var(--verde-texto);
 }
 
 .final--perdido .cierre-final h1 {
