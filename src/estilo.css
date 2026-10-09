@@ -38,7 +38,10 @@ body {
 }
 
 button {
+  min-width: 44px;
+  min-height: 44px;
   font: inherit;
+  touch-action: manipulation;
 }
 
 button:focus-visible {
